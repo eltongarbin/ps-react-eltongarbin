@@ -53,5 +53,6 @@ test('hides password quality when enabled but no password is entered', () => {
     onChange={() => {}}
     showQuality
     value="" />).toJSON();
+    
   expect(tree).toMatchSnapshot();
 });
