@@ -14,7 +14,7 @@ class RegistrationForm extends React.Component {
         password: ''
       },
       errors: {},
-      submitted: false,
+      submitted: false
     };
   }
 
@@ -22,7 +22,7 @@ class RegistrationForm extends React.Component {
     const user = this.state.user;
     user[event.target.name] = event.target.value;
     this.setState({ user });
-  }
+  };
 
   // Returns a number from 0 to 100 that represents password quality.
   // For simplicity, just return % of min length entered.
@@ -30,7 +30,10 @@ class RegistrationForm extends React.Component {
   passwordQuality(password) {
     if (!password) return null;
     if (password.length >= this.props.minPasswordLength) return 100;
-    const percentOfMinLength = parseInt(password.length / this.props.minPasswordLength * 100, 10);
+    const percentOfMinLength = parseInt(
+      password.length / this.props.minPasswordLength * 100,
+      10
+    );
     return percentOfMinLength;
   }
 
@@ -39,7 +42,8 @@ class RegistrationForm extends React.Component {
     const { minPasswordLength } = this.props;
 
     if (!email) errors.email = 'Email required.';
-    if (password.length < minPasswordLength) errors.password = `Password must be at least ${minPasswordLength} characters.`;
+    if (password.length < minPasswordLength)
+      errors.password = `Password must be at least ${minPasswordLength} characters.`;
 
     this.setState({ errors });
     const formIsvalid = Object.getOwnPropertyNames(errors).length === 0;
@@ -55,37 +59,38 @@ class RegistrationForm extends React.Component {
       this.props.onSubmit(user);
       this.setState({ submitted: true });
     }
-  }
+  };
 
   render() {
     const { errors, submitted } = this.state;
     const { email, password } = this.state.user;
 
-    return (
-      submitted ? <h2>{this.props.confirmationMessage}</h2> :
-        <div>
-          <TextInput
-            htmlId="registration-form-email"
-            name="email"
-            onChange={this.onChange}
-            label="Email"
-            value={email}
-            error={errors.email}
-            required
-          />
-          <PasswordInput
-            htmlId="registration-form-password"
-            name="password"
-            value={password}
-            onChange={this.onChange}
-            quality={this.passwordQuality(password)}
-            showVisibilityToggle
-            maxLength={50}
-            error={errors.password}
-          />
-          <input type="submit" value="Register" onClick={this.onSubmit} />
-        </div>
-    )
+    return submitted ? (
+      <h2>{this.props.confirmationMessage}</h2>
+    ) : (
+      <div>
+        <TextInput
+          htmlId="registration-form-email"
+          name="email"
+          onChange={this.onChange}
+          label="Email"
+          value={email}
+          error={errors.email}
+          required
+        />
+        <PasswordInput
+          htmlId="registration-form-password"
+          name="password"
+          value={password}
+          onChange={this.onChange}
+          quality={this.passwordQuality(password)}
+          showVisibilityToggle
+          maxLength={50}
+          error={errors.password}
+        />
+        <input type="submit" value="Register" onClick={this.onSubmit} />
+      </div>
+    );
   }
 }
 
@@ -98,7 +103,7 @@ RegistrationForm.propTypes = {
 
   /** Minimum password length */
   minPasswordLength: PropTypes.number
-}
+};
 
 RegistrationForm.defaultProps = {
   confirmationMessage: 'Thanks for registering!',

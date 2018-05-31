@@ -14,23 +14,23 @@ const Props = ({ props }) => {
         </tr>
       </thead>
       <tbody>
-        {
-          Object.keys(props).map(key => {
-            return (
-              <tr key={key}>
-                <td>{key}</td>
-                <td>{props[key].description}</td>
-                <td>{props[key].type.name}</td>
-                <td>{props[key].defaultValue && props[key].defaultValue.value}</td>
-                <td>{props[key].required && "X"}</td>
-              </tr>
-            );
-          })
-        }
+        {Object.keys(props).map((key) => {
+          return (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{props[key].description}</td>
+              <td>{props[key].type.name}</td>
+              <td>
+                {props[key].defaultValue && props[key].defaultValue.value}
+              </td>
+              <td>{props[key].required && 'X'}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
-}
+};
 
 Props.propTypes = {
   props: PropTypes.object.isRequired

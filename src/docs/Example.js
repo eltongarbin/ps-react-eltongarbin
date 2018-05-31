@@ -8,18 +8,20 @@ class Example extends React.Component {
     this.state = { showCode: false };
   }
 
-  toggleCode = event => {
+  toggleCode = (event) => {
     event.preventDefault();
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return { showCode: !prevState.showCode };
     });
-  }
+  };
 
   render() {
     const { showCode } = this.state;
     const { code, description, name } = this.props.example;
     // Must use CommonJS require to dynamically require because ES Modules must be statically analyzable.
-    const ExampleComponent = require(`./examples/${this.props.componentName}/${name}`).default;
+    const ExampleComponent = require(`./examples/${
+      this.props.componentName
+    }/${name}`).default;
 
     return (
       <div className="example">
@@ -29,7 +31,7 @@ class Example extends React.Component {
 
         <p>
           <a href="" onClick={this.toggleCode}>
-            {showCode ? "Hide" : "Show"} Code
+            {showCode ? 'Hide' : 'Show'} Code
           </a>
         </p>
 
@@ -42,6 +44,6 @@ class Example extends React.Component {
 Example.propTypes = {
   example: PropTypes.object.isRequired,
   componentName: PropTypes.string.isRequired
-}
+};
 
 export default Example;

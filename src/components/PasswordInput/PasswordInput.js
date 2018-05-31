@@ -11,19 +11,30 @@ class PasswordInput extends React.Component {
 
     this.state = {
       showPassword: false
-    }
+    };
   }
 
-  toggleShowPassword = event => {
-    this.setState(prevState => {
+  toggleShowPassword = (event) => {
+    this.setState((prevState) => {
       return { showPassword: !prevState.showPassword };
     });
 
     if (event) event.preventDefault();
-  }
+  };
 
   render() {
-    const { htmlId, value, label, error, onChange, placeholder, maxLength, showVisibilityToggle, quality, ...props } = this.props;
+    const {
+      htmlId,
+      value,
+      label,
+      error,
+      onChange,
+      placeholder,
+      maxLength,
+      showVisibilityToggle,
+      quality,
+      ...props
+    } = this.props;
     const { showPassword } = this.state;
 
     return (
@@ -39,8 +50,7 @@ class PasswordInput extends React.Component {
         required
         {...props}
       >
-        {
-          showVisibilityToggle &&
+        {showVisibilityToggle && (
           <a
             href=""
             onClick={this.toggleShowPassword}
@@ -48,10 +58,9 @@ class PasswordInput extends React.Component {
           >
             <EyeIcon />
           </a>
-        }
-        {
-          value.length > 0 && quality && <ProgressBar percent={quality} width={130} />
-        }
+        )}
+        {value.length > 0 &&
+          quality && <ProgressBar percent={quality} width={130} />}
       </TextInput>
     );
   }

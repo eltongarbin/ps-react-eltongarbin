@@ -7,7 +7,7 @@ function Label({ htmlFor, label, required }) {
     <label style={{ display: 'block' }} htmlFor={htmlFor}>
       {label} {required && <span style={{ color: 'red' }}> *</span>}
     </label>
-  )
+  );
 }
 
 Label.propTypes = {
@@ -19,6 +19,6 @@ Label.propTypes = {
 
   /** Display asterisk after label if true */
   required: PropTypes.bool
-}
+};
 
 export default Label;
